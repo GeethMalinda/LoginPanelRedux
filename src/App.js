@@ -1,16 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Login from './Components/Login';
-import "./App.css"
+import './App.css';
+import {useSelector} from 'react-redux';
+import {selectUser} from './features/userSlice';
+import Logout from './Components/Logout';
 
-function App() {
-  const [name ,setName] = useState('');
-  const [email ,setEmail] = useState('');
-  const [passward ,setPassward] = useState('');
-  return (
+const App = () => {
+    const user = useSelector(selectUser)
+
+    return (
     <div className="App">
-      <Login/>
+        {
+            user ? <Logout/> :<Login/>
+        }
     </div>
   );
 }
-
-export default App;
+export default App
